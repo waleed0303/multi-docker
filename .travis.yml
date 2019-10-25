@@ -17,3 +17,16 @@ after_success:
  - docker push waleed0303/multi-nginx
  - docker push waleed0303/multi-server
  - docker push waleed0303/multi-worker
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "multi-docker"
+  env: "MultiDocker-env"
+  bucket_name: "elasticbeanstalk-us-east-2-400291606338"
+  bucket_path: "multi-docker"
+  on:
+    branch: master
+  access_key_id:
+    secure: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
